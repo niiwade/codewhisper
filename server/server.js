@@ -9,7 +9,7 @@ dotenv.config();
 // create new configuration
 
 const configuration = new Configuration({
-    apiKey: process.env.OpenAI_API_KEY
+    apiKey: process.env.OpenAI_API_KEY,
 })
 
 
@@ -29,7 +29,7 @@ app.use(express.json())
 
 app.get('/', async(req,res)=>{
     res.status(200).send({
-        messag: "Hello from WisCode"
+        message: "Hello from WisCode"
     })
 })
 
