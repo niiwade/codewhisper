@@ -32,3 +32,32 @@ app.get('/', async(req,res)=>{
         messag: "Hello from WisCode"
     })
 })
+
+
+app.post('/', async(req,res)=>{
+    try {
+        const prompt = req.body.prompt;
+
+        const response = await openai.createCompletion({
+            model:"text-davinci-003",
+            prompt:"${prompt                                    }",
+            temperature:0,
+            max_tokens:4000,
+            top_p:1,
+            frequency_penalty:0.5,
+            presence_penalty:0
+        })
+
+        res.status(200).send({
+            code: response.data.choices[0].text
+        })
+    } catch (error) {
+
+        res.status(500).send({error})
+        
+    }
+})
+
+app.listen(5000,()=>
+    console.log("Server is running  on port http://localhost:5000")
+)
